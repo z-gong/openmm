@@ -236,6 +236,12 @@ CudaContext::CudaContext(const System& system, int deviceIndex, bool useBlocking
             minor = 3;
         }
     }
+    // This is a workaround to support RTX2080TI with CUDA Runtime 9.2. It reports
+    // its compute capability as 7.5, but the compiler doesn't support
+    // anything beyond 7.2. PSMN use CUDA driver 10.1 but the Runtime is 9.2.
+    if (major == 7 and minor == 5) {
+        minor = 2;
+    }
     gpuArchitecture = intToString(major)+intToString(minor);
     computeCapability = major+0.1*minor;
 
@@ -679,7 +685,10 @@ CUmodule CudaContext::createModule(const string source, const map<string, string
             m<<"Error loading CUDA module: "<<getErrorString(result)<<" ("<<result<<")";
             throw OpenMMException(m.str());
         }
-        remove(inputFile.c_str());
+        /**
+         * keep the CUDA input files, make debug easier
+         */
+//        remove(inputFile.c_str());
         if (rename(outputFile.c_str(), cacheFile.str().c_str()) != 0)
             remove(outputFile.c_str());
         remove(logFile.c_str());
