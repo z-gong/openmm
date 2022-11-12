@@ -284,6 +284,15 @@ public:
      * belong to exactly one molecule.
      */
     const std::vector<std::vector<int> >& getMolecules() const;
+    /**
+     * Get a description of how the particles in the system are grouped into constraints.  Two particles are in the
+     * same group if they are connected by constraints or virtual sites, where every Force object can define bonds
+     * in whatever way are appropriate to that force.
+     *
+     * Each element lists the indices of all particles in a single group.  Every particle is guaranteed to
+     * belong to exactly one group.
+     */
+    const std::vector<std::vector<int> >& getConstrainedGroups() const;
 private:
     friend class ContextImpl;
     friend class Force;
