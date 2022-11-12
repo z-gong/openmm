@@ -279,3 +279,7 @@ const ContextImpl& Context::getImpl() const {
 const vector<vector<int> >& Context::getMolecules() const {
     return impl->getMolecules();
 }
+
+const vector<vector<int> >& Context::getConstrainedGroups() const {
+    return impl->getConstrainedGroups();
+}

@@ -70,6 +70,7 @@ class WrapperGenerator:
                             'void OpenMM::Context::createCheckpoint',
                             'void OpenMM::Context::loadCheckpoint',
                             'const std::vector<std::vector<int> >& OpenMM::Context::getMolecules',
+                            'const std::vector<std::vector<int> >& OpenMM::Context::getConstrainedGroups',
                             'static std::vector<std::string> OpenMM::Platform::getPluginLoadFailures',
                             'static std::vector<std::string> OpenMM::Platform::loadPluginsFromDirectory',
                             'Vec3 OpenMM::LocalCoordinatesSite::getOriginWeights',
