@@ -7827,12 +7827,14 @@ void CommonApplyMonteCarloBarostatKernel::scaleCoordinates(ContextImpl& context,
     // for (auto& offset : cc.getPosCellOffsets())
     //     offset = mm_int4(0, 0, 0, 0);
     lastAtomOrder = cc.getAtomIndex();
+    lastPosCellOffsets = cc.getPosCellOffsets();
 }
 
 void CommonApplyMonteCarloBarostatKernel::restoreCoordinates(ContextImpl& context) {
     ContextSelector selector(cc);
     savedPositions.copyTo(cc.getPosq());
     savedLongForces.copyTo(cc.getLongForceBuffer());
+    cc.setPosCellOffsets(lastPosCellOffsets);
     if (savedFloatForces.isInitialized())
         savedFloatForces.copyTo(cc.getFloatForceBuffer());
 }
