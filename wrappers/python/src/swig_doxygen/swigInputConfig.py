@@ -327,6 +327,7 @@ UNITS = {
 ("Context", "getParameter") : (None, ()),
 ("Context", "getParameters") : (None, ()),
 ("Context", "getMolecules") : (None, ()),
+("Context", "getConstrainedGroups") : (None, ()),
 ("Context", "getState") : (None, (None, None, None)),
 ("Context", "setPeriodicBoxVectors") : (None, ("unit.nanometer", "unit.nanometer", "unit.nanometer")),
 ("Context", "setPositions") : (None, ("unit.nanometer",)),
